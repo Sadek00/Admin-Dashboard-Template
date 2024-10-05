@@ -1,0 +1,122 @@
+<!--**********************************
+            Sidebar start
+***********************************-->
+<div class="sidebar">
+    <!-- Logo section -->
+    <a href="#" class="logo">
+      <i class='bx bx-code-alt'></i>
+      <div class="logo-name"><span>Asmr</span>Prog</div>
+    </a>
+  
+    <!-- Navigation menu -->
+    <ul class="sidebar-menu p-3 m-0 mb-0">
+      @for (item of navigationItems; track item.id) {
+        <!-- Divider items -->
+        @if (item.type === 'divider') {
+          <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">
+            {{ item.title }}
+          </li>
+          <!-- Children of divider -->
+          @if (item.children) {
+            @for (child of item.children; track child.id) {
+              <!-- Regular menu items -->
+              @if (child.type === 'item') {
+                <li class="sidebar-menu-item" [ngClass]="child.classes" 
+                [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: child.exactMatch || true }">
+                  <a [routerLink]="child.url">
+                    <i [class]="child.icon" class="sidebar-menu-item-icon"></i> {{ child.title }}
+                  </a>
+                </li>
+              }
+              <!-- Collapsible menu items -->
+              @if (child.type === 'collapse') {
+                <li class="sidebar-menu-item">
+                  <a href="#" (click)="toggleExpanded(child); $event.preventDefault()">
+                    <i [class]="child.icon" class="sidebar-menu-item-icon"></i> {{ child.title }}
+                    <i class="sidebar-menu-item-accordion ms-auto" 
+                    [ngClass]="child.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
+                  </a>
+                  @if (child.expanded) {
+                    <ul class="sidebar-dropdown-menu">
+                      @for (subChild of child.children; track subChild.id) {
+                        <!-- Nested collapsible items -->
+                        @if (subChild.type === 'collapse') {
+                          <li class="sidebar-dropdown-menu-item">
+                            <a href="#" (click)="toggleExpanded(subChild); $event.preventDefault()">
+                               {{ subChild.title }}
+                              <i class="sidebar-menu-item-accordion ms-auto" 
+                              [ngClass]="subChild.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
+                            </a>
+                            @if (subChild.expanded) {
+                              <ul class="sidebar-nested-dropdown-menu">
+                                @for (nestedChild of subChild.children; track nestedChild.id) {
+                                  <li class="sidebar-nested-dropdown-menu-item" 
+                                  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: nestedChild.exactMatch || true }">
+                                    <a [routerLink]="nestedChild.url">
+                                      {{ nestedChild.title }}
+                                    </a>
+                                  </li>
+                                }
+                              </ul>
+                            }
+                          </li>
+                        }
+                        <!-- Regular nested items -->
+                        @if (subChild.type === 'item') {
+                          <li class="sidebar-dropdown-menu-item" 
+                          [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: subChild.exactMatch || true }">
+                            <a [routerLink]="subChild.url">
+                              {{ subChild.title }}
+                            </a>
+                          </li>
+                        }
+                      }
+                    </ul>
+                  }
+                </li>
+              }
+            }
+          }
+        }
+        <!-- Top-level regular menu items without divider(ex:Dashboard) -->
+        @if (item.type === 'item') {
+          <li class="sidebar-menu-item" [ngClass]="item.classes" 
+          [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: item.exactMatch || true }">
+            <a [routerLink]="item.url">
+              <i [class]="item.icon" class="sidebar-menu-item-icon"></i> {{ item.title }}
+            </a>
+          </li>
+        }
+        <!-- Top-level collapsible menu items without divider -->
+        @if (item.type === 'collapse') {
+          <li class="sidebar-menu-item has-dropdown" [routerLinkActive]="'active'">
+            <a href="#" (click)="toggleExpanded(item); $event.preventDefault()">
+              <i [class]="item.icon" class="sidebar-menu-item-icon"></i> {{ item.title }}
+              <i class="sidebar-menu-item-accordion ms-auto" 
+              [ngClass]="item.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
+            </a>
+            @if (item.expanded) {
+              <ul class="sidebar-dropdown-menu">
+                @for (child of item.children; track child.id) {
+                  <li class="sidebar-dropdown-menu-item" 
+                  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: child.exactMatch || true }">
+                    <a [routerLink]="child.url">
+                      {{ child.title }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      }
+    </ul>
+  </div>
+  
+<!-- <div class="sidebar-overlay"></div>  -->
+
+
+
+<!--**********************************
+    Sidebar end
+***********************************-->
