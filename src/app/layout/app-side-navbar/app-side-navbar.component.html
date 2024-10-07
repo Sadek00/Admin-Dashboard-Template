@@ -21,8 +21,10 @@
             @for (child of item.children; track child.id) {
               <!-- Regular menu items -->
               @if (child.type === 'item') {
-                <li class="sidebar-menu-item" [ngClass]="child.classes" 
-                [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: child.exactMatch || true }">
+                <li #menuItem class="sidebar-menu-item" [ngClass]="child.classes" 
+                [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: child.exactMatch || true }"
+                (mouseenter)="showPopup($event, child, menuItem)" 
+                (mouseleave)="hidePopup()">
                   <a [routerLink]="child.url">
                     <i [class]="child.icon" class="sidebar-menu-item-icon"></i> {{ child.title }}
                   </a>
@@ -30,8 +32,10 @@
               }
               <!-- Collapsible menu items -->
               @if (child.type === 'collapse') {
-                <li class="sidebar-menu-item">
-                  <a href="#" (click)="toggleExpanded(child); $event.preventDefault()">
+                <li #menuItem class="sidebar-menu-item"
+                (mouseenter)="showPopup($event, child, menuItem)" 
+                (mouseleave)="hidePopup()">
+                  <a href="#" (click)="toggleExpanded(child, $event); $event.preventDefault()">
                     <i [class]="child.icon" class="sidebar-menu-item-icon"></i> {{ child.title }}
                     <i class="sidebar-menu-item-accordion ms-auto" 
                     [ngClass]="child.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
@@ -42,7 +46,7 @@
                         <!-- Nested collapsible items -->
                         @if (subChild.type === 'collapse') {
                           <li class="sidebar-dropdown-menu-item">
-                            <a href="#" (click)="toggleExpanded(subChild); $event.preventDefault()">
+                            <a href="#" (click)="toggleExpanded(subChild, $event); $event.preventDefault()">
                                {{ subChild.title }}
                               <i class="sidebar-menu-item-accordion ms-auto" 
                               [ngClass]="subChild.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
@@ -90,7 +94,7 @@
         <!-- Top-level collapsible menu items without divider -->
         @if (item.type === 'collapse') {
           <li class="sidebar-menu-item has-dropdown" [routerLinkActive]="'active'">
-            <a href="#" (click)="toggleExpanded(item); $event.preventDefault()">
+            <a href="#" (click)="toggleExpanded(item, $event); $event.preventDefault()">
               <i [class]="item.icon" class="sidebar-menu-item-icon"></i> {{ item.title }}
               <i class="sidebar-menu-item-accordion ms-auto" 
               [ngClass]="item.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>

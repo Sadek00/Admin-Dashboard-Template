@@ -62,15 +62,7 @@ export class NavigationService {
                 url: '/pricing'
               }
             ]
-          }
-        ]
-      },
-      
-      {
-        id: 'divider-2',
-        type: 'divider',
-        title: 'Attandance', // This will be the label for the divider
-        children: [
+          },
           {
             id: '2',
             title: 'User Profile',
@@ -111,14 +103,7 @@ export class NavigationService {
                 url: '/pricing'
               }
             ]
-          }
-        ]
-      },
-      {
-        id: 'divider-3',
-        type: 'divider',
-        title: 'Payroll', // This will be the label for the divider
-        children: [
+          },
           {
             id: '2',
             title: 'User Profile',
@@ -159,62 +144,7 @@ export class NavigationService {
                 url: '/pricing'
               }
             ]
-          }
-        ]
-      },
-      {
-        id: 'divider-4',
-        type: 'divider',
-        title: 'Shift', // This will be the label for the divider
-        children: [
-          {
-            id: '2',
-            title: 'User Profile',
-            type: 'item',
-            url: '/user-profile',
-            icon: 'bx bx-user',
-            exactMatch: true
           },
-          {
-            id: '3',
-            title: 'Pages',
-            type: 'collapse',
-            icon: 'bx bx-store-alt',
-            children: [
-              {
-                id: '3-1',
-                title: 'Blog',
-                type: 'collapse',
-                children: [
-                  {
-                    id: '3-1-1',
-                    title: 'Home',
-                    type: 'item',
-                    url: '/blog/home'
-                  },
-                  {
-                    id: '3-1-2',
-                    title: 'Post',
-                    type: 'item',
-                    url: '/blog/post'
-                  }
-                ]
-              },
-              {
-                id: '3-2',
-                title: 'Pricing',
-                type: 'item',
-                url: '/pricing'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'divider-5',
-        type: 'divider',
-        title: 'Employee', // This will be the label for the divider
-        children: [
           {
             id: '2',
             title: 'User Profile',
