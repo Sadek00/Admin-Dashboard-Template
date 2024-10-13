@@ -14,7 +14,10 @@
     --success: #388E3C;
     --light-success: #BBF7D0;
     --light-nav: linear-gradient(135deg, #6379c3 0%, #546ee5 60%)#191e3a;
-    --sidebar-item-light:#202f87
+    --sidebar-item-light:#0e2ddf;
+    --shal-body-bg:#f5f7fa;
+    --sahl-background: #fff;
+    --bg-body-emphasis:rgb(255 255 255);
 }
 
 *{
@@ -46,10 +49,12 @@ body.dark{
     --grey: #25252c;
     --dark: #fbfbfb;
     --light-nav: rgb(15 23 42);
+    --shal-body-bg: #0f111a;
+    --sahl-background: #141824
 }
 
 body{
-    background: var(--grey);
+    background: var(--shal-body-bg);
     overflow-x: hidden;
 }
 
@@ -58,7 +63,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    background: var(--light);
+    background: var(--sahl-background);
     width: 230px;
     height: 100%;
     z-index: 2000;
@@ -673,3 +678,75 @@ ol, ul {
     }
 
 }
+
+/* Dynamic Popup start */
+.dynamic-popup {
+    position: fixed;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    
+    /* // Add animation */
+    animation: popupFadeIn 0.2s ease-in-out forwards;
+  
+    .popup-content {
+      padding: 8px 0;
+    }
+  
+    .popup-arrow {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      transform: rotate(45deg);
+    }
+  
+    /* // Position-specific styles */
+    &.position-right {
+      .popup-arrow {
+        left: -4px;
+        top: 50%;
+        margin-top: -4px;
+      }
+    }
+  
+    &.position-left {
+      .popup-arrow {
+        right: -4px;
+        top: 50%;
+        margin-top: -4px;
+      }
+    }
+  
+    &.position-top {
+      .popup-arrow {
+        bottom: -4px;
+        left: 50%;
+        margin-left: -4px;
+      }
+    }
+  
+    &.position-bottom {
+      .popup-arrow {
+        top: -4px;
+        left: 50%;
+        margin-left: -4px;
+      }
+    }
+  }
+  
+  @keyframes popupFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Dynamic Popup end */

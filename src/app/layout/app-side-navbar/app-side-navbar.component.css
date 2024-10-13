@@ -5,8 +5,21 @@
   border-radius: 6px;
   z-index: 1000;
   min-width: 220px;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible to show the arrow */
   
+  /* Add arrow pseudo-element */
+  &::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* Adjust this value to position the arrow */
+    top: 13px; /* This centers the arrow vertically with the menu item */
+    width: 17px;
+    height: 17px;
+    background-color: #f5f7f9;
+    transform: rotate(45deg);
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
+  }
+
   .popup-header {
     background-color: #f5f7f9;
     color: #1a73e8;

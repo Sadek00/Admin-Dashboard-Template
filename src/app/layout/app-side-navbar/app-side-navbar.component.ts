@@ -15,6 +15,7 @@ import { NavigationService } from '../../services/navigation.service';
 export class AppSideNavbarComponent {
   navigationItems: NavigationItem[] = [];
   activePopup: HTMLElement | null = null;
+  activeMenuItem: HTMLElement | null = null;
   popupTimeout: any;
 
   constructor(
@@ -39,6 +40,7 @@ export class AppSideNavbarComponent {
     }
   }
   /**************************************hover functionality when sidebar is compact ************************************/
+  
   showPopup(event: MouseEvent, item: any, menuItemEl: HTMLElement) {
     if (!this.isSidebarCollapsed()) return;
     
@@ -66,9 +68,14 @@ export class AppSideNavbarComponent {
 
     const rect = menuItemEl.getBoundingClientRect();
     this.renderer.setStyle(popup, 'top', `${rect.top - 6}px`);
-    this.renderer.setStyle(popup, 'left', `${rect.right + 18}px`);
+    this.renderer.setStyle(popup, 'left', `${rect.right + 24}px`);
 
     this.renderer.appendChild(document.body, popup);
+
+    // Set active menu item and add hover-active class
+    this.activeMenuItem = menuItemEl;
+    this.renderer.addClass(menuItemEl, 'hover-active');
+    
     this.activePopup = popup;
   }
 
@@ -86,9 +93,15 @@ export class AppSideNavbarComponent {
   }
 
   removeActivePopup() {
-    if (this.activePopup) {
-      this.renderer.removeChild(document.body, this.activePopup);
+    if (this.activePopup && this.activePopup.parentNode) {
+      this.activePopup.parentNode.removeChild(this.activePopup);
       this.activePopup = null;
+    }
+    
+    // Remove hover-active class from previous menu item
+    if (this.activeMenuItem) {
+      this.renderer.removeClass(this.activeMenuItem, 'hover-active');
+      this.activeMenuItem = null;
     }
   }
 
