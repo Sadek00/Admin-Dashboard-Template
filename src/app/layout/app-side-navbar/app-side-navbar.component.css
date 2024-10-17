@@ -57,7 +57,7 @@
           transform-origin: center;
           
           &.bx-chevron-down {
-            transform: rotate(90deg);
+            transform: rotate(3deg);
           }
           
           &.bx-right-arrow-alt {
@@ -125,3 +125,4 @@
     }
   }
 }
+

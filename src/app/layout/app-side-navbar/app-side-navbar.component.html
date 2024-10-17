@@ -33,12 +33,12 @@
               <!-- Collapsible menu items -->
               @if (child.type === 'collapse') {
                 <li #menuItem class="sidebar-menu-item"
-                (mouseenter)="showPopup($event, child, menuItem)" 
-                (mouseleave)="hidePopup()">
+                    (mouseenter)="showPopup($event, child, menuItem)" 
+                    (mouseleave)="hidePopup()">
                   <a href="#" (click)="toggleExpanded(child, $event); $event.preventDefault()">
                     <i [class]="child.icon" class="sidebar-menu-item-icon"></i> {{ child.title }}
-                    <i class="sidebar-menu-item-accordion ms-auto" 
-                    [ngClass]="child.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
+                    <i class="sidebar-menu-item-accordion ms-auto bx bx-chevron-right"
+                      [ngClass]="{'rotated': child.expanded}"></i>
                   </a>
                   @if (child.expanded) {
                     <ul class="sidebar-dropdown-menu">
@@ -48,8 +48,8 @@
                           <li class="sidebar-dropdown-menu-item">
                             <a href="#" (click)="toggleExpanded(subChild, $event); $event.preventDefault()">
                                {{ subChild.title }}
-                              <i class="sidebar-menu-item-accordion ms-auto" 
-                              [ngClass]="subChild.expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'"></i>
+                               <i class="sidebar-menu-item-accordion ms-auto bx bx-chevron-right"
+                               [ngClass]="{'rotated': subChild.expanded}"></i>
                             </a>
                             @if (subChild.expanded) {
                               <ul class="sidebar-nested-dropdown-menu">
