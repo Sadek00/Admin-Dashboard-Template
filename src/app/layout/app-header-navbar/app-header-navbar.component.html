@@ -11,16 +11,41 @@
   </form>
   <input type="checkbox" id="theme-toggle" hidden>
   <label for="theme-toggle" class="theme-toggle"></label>
-  <a href="#" class="notif">
+  <a  class="notif" (click)="toggleDropdown()">
     <i class='bx bx-bell'></i>
     <span class="count">12</span>
   </a>
-  <a href="#" class="profile">
+  <a class="profile" (click)="toggleDropdownForUser()">
     <img src="assets/images/logo.png">
   </a>
 </nav>
 
 
+<!-- Notification Dropdown-->
+<div class="dropdown" *ngIf="dropdownVisible">
+  <div class="notification-item" *ngFor="let notification of notifications">
+    
+    <div class="notification-text">
+      <p>{{ notification.title }}</p>
+      <p>{{ notification.description }}</p>
+    </div>
+    <span [ngClass]="{'success': notification.status === 'Success', 'failed': notification.status === 'Failed'}">
+      {{ notification.status }}
+    </span>
+  </div>
+</div>
+
+<div class="dropdownForUser" *ngIf="dropdownVisibleForUser">
+  <div class="notification-itemForUser" *ngFor="let user of notificationsForUser">
+    <div class="notification-textForUser">
+      <p>{{ user.title }}</p>
+      <p>{{ user.description }}</p>
+    </div>
+    <span [ngClass]="{'success': user.status === 'Success', 'failed': user.status === 'Failed'}">
+      {{ user.status }}
+    </span>
+  </div>
+</div>
 <!--**********************************
     Header end 
 ***********************************-->

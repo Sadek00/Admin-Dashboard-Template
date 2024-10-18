@@ -82,5 +82,38 @@ export class AppHeaderNavbarComponent {
     }
   }
   
+  dropdownVisible:boolean = false;
+  dropdownVisibleForUser:boolean = false;
 
+  notifications = [
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Failed' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Failed' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' }
+  ];
+
+  notificationsForUser = [
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Failed' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Failed' },
+    { title: 'Lorem, ipsum dolor.', description: 'Lorem ipsum dolor sit amet.', status: 'Success' }
+  ];
+
+  // Toggle for notifications dropdown
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+    if (this.dropdownVisible) {
+      this.dropdownVisibleForUser = false;   // Close user dropdown when notification opens
+    }
+  }
+
+  // Toggle for user profile dropdown
+  toggleDropdownForUser() {
+    this.dropdownVisibleForUser = !this.dropdownVisibleForUser;
+    if (this.dropdownVisibleForUser) {
+      this.dropdownVisible = false;          // Close notification dropdown when user profile opens
+    }
+  }
 }

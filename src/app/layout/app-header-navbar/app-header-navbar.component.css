@@ -1,0 +1,120 @@
+.notification-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown {
+    position: absolute;
+    right: 57px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    z-index: 1000;
+    border-radius: 10px;
+  }
+  
+  .dropdownForUser {
+    position: absolute;
+    top:65px;
+    right: 0px;
+    background-color: rgb(228, 237, 248);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    z-index: 1000;
+    border-radius: 10px;
+  }
+  
+  
+  /* Add a triangle at the top of the popup */
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 30px; /* Adjust this value to match the new dropdown position */
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent rgb(255, 255, 255) transparent;
+  }
+
+  .dropdownForUser::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 30px; /* Adjust this value to match the new dropdown position */
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent rgb(168, 156, 239) transparent;
+  }
+
+  /* Notification Items */
+  .notification-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .notification-item:last-child {
+    border-bottom: none;
+  }
+  
+  .notification-itemForUser {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .notification-itemForUser:last-child {
+    border-bottom: none;
+  }
+
+  .notification-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .notification-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .notification-textForUser p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .success {
+    color: green;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  
+  .failed {
+    color: red;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  
+  .show-all {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    border-top: 1px solid #f1f1f1;
+  }
+  
+  .show-all:hover {
+    text-decoration: underline;
+  }
+
+  .profile{
+    cursor: pointer;
+  }
+  
