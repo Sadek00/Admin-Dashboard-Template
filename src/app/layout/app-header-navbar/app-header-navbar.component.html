@@ -1,23 +1,59 @@
 <!--**********************************
             Nav header start
 ***********************************-->
-<nav>
-  <i class='bx bx-menu' (click)="toggleMenu()"></i>
-  <form action="#">
-    <div class="form-input">
-      <input type="search" placeholder="Search...">
-      <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+<nav class="content-nav">
+  <button class="nav-icon" (click)="toggleSidebar()">
+    <i class='bx bx-menu'></i>
+  </button>
+  
+  <form class="search-form">
+    <div class="search-box">
+      <ng-icon 
+        name="heroMagnifyingGlass" 
+        size="20"
+        class="search-icon"
+      ></ng-icon>
+      <input 
+        type="search" 
+        class="form-control" 
+        placeholder="Search..."
+        [(ngModel)]="searchQuery"
+        name="search"
+      >
     </div>
   </form>
-  <input type="checkbox" id="theme-toggle" hidden>
-  <label for="theme-toggle" class="theme-toggle"></label>
-  <a  class="notif" (click)="toggleDropdown()">
-    <i class='bx bx-bell'></i>
-    <span class="count">12</span>
-  </a>
-  <a class="profile" (click)="toggleDropdownForUser()">
-    <img src="assets/images/logo.png">
-  </a>
+  
+  <div class="nav-actions">
+    <button class="nav-icon" (click)="toggleTheme()">
+      <ng-icon 
+        [name]="isDarkTheme() ? 'heroMoon' : 'heroSun'"
+        size="24"
+      ></ng-icon>
+    </button>
+    
+    <div class="notification-wrapper">
+      <button class="nav-icon" (click)="toggleNotifications()">
+        <ng-icon name="heroBell" size="24"></ng-icon>
+        @if (notificationCount() > 0) {
+          <span class="notification-badge">
+            {{ notificationCount() }}
+          </span>
+        }
+      </button>
+    </div>
+    
+    <!-- <button class="nav-icon" (click)="toggleVerticalMenu()">
+      <ng-icon name="heroEllipsisVertical" size="24"></ng-icon>
+    </button>
+    
+    <button class="nav-icon" (click)="toggleHorizontalMenu()">
+      <ng-icon name="heroEllipsisHorizontal" size="24"></ng-icon>
+    </button> -->
+    
+    <div class="profile-img" (click)="toggleProfile()">
+      <img [src]="profileImage()" [alt]="userName()">
+    </div>
+  </div>
 </nav>
 
 
